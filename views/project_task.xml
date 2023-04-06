@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_task_form_dundee" model="ir.ui.view">
+        <field name="name">view_task_form_dundee</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='description_page']" position="replace">
+               <page name="description_page" string="Informe de la tarea">
+                    <field name="informe_tarea"/>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='description_page']" position="before">
+               <page name="requisitos_page" string="Requisitos de la tarea">
+                    <field name="requisitos_tarea"/>
+                </page>
+            </xpath>
+            <xpath expr="//page[@name='description_page']" position="after">
+               <page name="attach_page" string="¿Algo para adjuntar?">
+                    <field name="image_to_attach"/>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="replace">
+                <field name="worker_id"/>
+            </xpath>
+            <xpath expr="//field[@name='worker_id']" position="after">
+                <field name="tarea_realizada" />
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button 
+                    name="action_task_2_done" 
+                    type="object" 
+                    string="¡Tarea finalizada!" 
+                    groups="dundee.group_see_task_creation"
+                    class="oe_highlight" />
+                <button 
+                    name="action_task_2_review" 
+                    type="object" 
+                    string="Para revisar..." 
+                    />
+            </xpath>
+        </field>
+    </record>
+</odoo>

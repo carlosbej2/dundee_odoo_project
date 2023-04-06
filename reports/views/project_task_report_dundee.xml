@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <template id="dundee_project_task_format_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t
+                        t-call="dundee.dundee_project_task_format_template_translatable"
+                        t-lang="doc.partner_id.lang"
+                    />
+                </t>
+            </t>
+        </template>
+
+        <template id="dundee_project_task_header_format">
+             <div class="header">
+                <div class="row">
+                    <img
+                        src="D:\Odoo14\server\odoo\addons\dundee\static\src\img\cabecera.png"
+                        width="100%"
+                    />
+                </div>
+            </div>
+        </template>
+
+        <template id="dundee_project_task_footer_format">
+             <div class="footer">
+                <div class="row">
+                    <img
+                        src="D:\Odoo14\server\odoo\addons\dundee\static\src\img\footer.png"
+                        width="100%"
+                    />
+                </div>
+            </div>
+        </template>
+
+        <template id="dundee_project_task_format_template_translatable">
+             <t t-call="web.basic_layout">
+                <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)" />
+
+                <!-- llamamos al HEADER aqui para que se pinte arriba del elemento PAGE -->
+                <t t-call="dundee.dundee_project_task_header_format" />
+
+                <!-- declaramos la página donde estará contenido toda la información útil del informe -->
+                <div class="page" style="margin-left:20px; margin-right:20px; font-size: 18px">
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-4" style="border: 1px solid black; width:33%; padding:5px">
+                                <span class="header-style">Trabajador: </span> <span  class="header-style" t-field="doc.worker_id.name"
+                                /><br />
+                                <span class="header-style" >Rol: </span> <span  class="header-style"  t-field="doc.worker_id.function"  /><br />  
+                                Email: <span  t-field="doc.worker_id.email"
+                                /><br />
+                            </div>
+                            <div class="col-xs-4" style="border: 1px solid black; width:33%; padding:5px">
+
+                           <span
+                                class="header-style"
+                            >Creado por: </span>
+                                <span
+                                class="header-style"
+                                t-field="doc.user_id.name"
+                            /><br />
+                                Fecha: <span
+                                t-field="doc.create_date" t-options='{"widget": "date"}' 
+                            /><br />
+                            </div>
+                            <div class="col-xs-4" style="border: 1px solid black; width:34%; padding:5px">
+                                <span style="font-color: red; font-size:24px; padding-left:10px;"><span style="font-color: red;" class="bold" t-field="doc.project_id.name"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12" style="margin-top: 20px;">
+                        <div class="row">
+                            <div class="col-xs-12" style="border: 1px solid black; padding:5px">
+                                <strong style="font-size:22px;">Tarea: </strong> <strong style="font-size:22px;" class="header-style" t-field="doc.name"/><br />
+                                <strong style="font-size:22px;"> Proyecto:</strong> <strong style="font-size:22px;" t-field="doc.project_id.name"/><br /><br />
+                                 <span class="header-style" >Requisitos: </span> <span  class="header-style"  style="text-align: justify" t-field="doc.requisitos_tarea"  /><br />  
+                                <span class="header-style" >Descripción: </span> <span  class="header-style"  style="text-align: justify" t-field="doc.informe_tarea"  /><br />  
+                                <span class="header-style" >Estado: </span> <span  class="header-style"  t-field="doc.stage_id.name"  /><br />  <br />
+                                <span class="header-style" >Prioridad: </span> <span  class="header-style"  t-field="doc.priority"  /><br />  <br />
+                                <span class="header-style" >Horas estimadas: </span> <span  class="header-style"  t-field="doc.planned_hours"  /><br />  <br />
+                                <span class="header-style" >Horas reales: </span> <span  class="header-style"  t-field="doc.planned_hours"  /><br />  <br />
+                            </div>
+                        </div>
+                    </div>
+                    <div align="center" style="margin-top: 25px; margin-left:80px; text-align:center">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td style="border: 1px solid black; padding:5px; width:45%; height:150px;">
+                                        <span class="header-style">Firma del trabajador: </span>
+                                        <br></br>
+                                        <span  class="header-style" t-field="doc.worker_id.name"/>
+                                    </td>
+                                    <td style="width:10%;"></td>
+                                    <td style="border: 1px solid black; padding:5px; width:45%; height:150px;">
+                                        <span class="header-style">Firma del jefe de proyecto: </span> <span  class="header-style"  t-field="doc.user_id.name"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <t t-call="dundee.dundee_project_task_footer_format" />
+            </t>
+        </template>
+    </data>
+</odoo>

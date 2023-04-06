@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="project_task_wizard_creation" model="ir.ui.view">
+            <field name="name">project.task.wizard.creation</field>
+            <field name="model">project.task.creation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group string="¡Creación de tarea rápida!">
+                            <field name="name" />
+                            <field name="worker_id" />
+                            <field name="project_id"/>
+                            <field name="description" />
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button
+                            name="create_task"
+                            type="object"
+                            string="Crear tarea"
+                            class="oe_highlight"
+                        />
+                        o
+                        <button special="cancel" string="Cancelar" class="oe_link" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record
+            id="project_task_wizard_creation_action"
+            model="ir.actions.act_window"
+        >
+            <field name="name">Creación de tareas</field>
+            <field name="res_model">project.task.creation</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            id="menu_project_task_wizard_creation"
+            name="¡Tarea rápida!"
+            groups="dundee.group_see_task_creation"
+            parent="project.menu_main_pm"
+            action="project_task_wizard_creation_action"
+            sequence="1"
+        />
+
+    </data>
+</odoo>

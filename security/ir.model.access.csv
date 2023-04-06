@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_task_creation,access_project_task_creation,model_project_task_creation,base.group_user,1,1,1,1
+access_project_task,access_project_task,model_project_task,dundee.group_user_normal_rights,1,0,0,0
+access_res_partner,access_res_partner,model_res_partner,dundee.group_user_normal_rights,1,0,0,0
